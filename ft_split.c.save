@@ -1,0 +1,87 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zahmamed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/23 11:33:59 by zahmamed          #+#    #+#             */
+/*   Updated: 2026/10/23 11:34:01 by zahmamed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+size_t ft_count_word(char *ptr , char c){
+	size_t i =0;
+	size_t count = 0;
+	while(ptr[i] == c && ptr[i]){
+		i++;
+	}
+	while(ptr[i]){
+		while(ptr[i]!=c && ptr[i]){
+			i++;
+		}
+		count++;
+		while(ptr[i]== c && ptr[i]){
+			i++;
+		}
+	}
+	return count;
+}
+static size_t ft_getlen(char *p , char c,size_t pos){
+	while(p[pos] && p[pos] == c){
+		pos++;
+	}
+	size_t start = pos;
+	while(p[pos] && p[pos] != c){
+		pos++;
+	}
+	return (pos-start);
+}
+char **ft_split(char const *s, char c){
+	if(!s){
+		return (NULL);//in case s point to a NULL
+	}
+	size_t n = ft_count_word(s,c);
+	char **dest = malloc((n+1) * sizeof(char *));
+	if(!dest){
+		return NULL;
+	}
+	size_t k =0;
+	while(k<n){
+		while(s[pos] && s[pos] == c){
+			pos++;
+		}
+		size_t len = ft_getlen(s,c,pos);
+		dest[k] = malloc((len+1) * sizeof(char));
+		if(!dest){
+			int i =0;
+			while(dest[i]){
+				free(dest[i]);
+				i++;
+			}
+			free(dest);
+			return NULL;
+		}
+		dest[k] = ft_memcpy();
+	}
+}
+int main(void){
+	char str[]= "   HI 42 BELGIUM ";
+	char c = ' ';
+	char **arr_str = ft_split(str ,c);
+	if(!arr_str){
+		return 1;
+	}
+	size_t i =0;
+	while(arr_str[i]){
+		printf("The %ld array contain %s\n",i,arr_str[i]);
+		i++;
+	}
+	size_t j =0;
+	while(arr_str[j]){
+		free(arr_str[j]);
+		j++;
+	}
+	free(arr_str);
+	return (0);
+}
