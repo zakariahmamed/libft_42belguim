@@ -9,7 +9,9 @@
 /*   Updated: 2026/10/22 18:50:48 by zahmamed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stddef.h>
+
+#include <stddef.h>
+
 /*
 static void	ft_even_lower(unsigned int i, char *p)
 {
